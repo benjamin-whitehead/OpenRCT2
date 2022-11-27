@@ -548,6 +548,11 @@ inline constexpr ScreenCoordsXY Translate3DTo2DWithZ(int32_t rotation, const Coo
     return ScreenCoordsXY{ rotated.y - rotated.x, ((rotated.x + rotated.y) >> 1) - pos.z };
 }
 
+inline constexpr ScreenCoordsXY Translate3DTo2D(int32_t rotation, const CoordsXY& pos)
+{
+    return Translate3DTo2DWithZ(rotation, CoordsXYZ{ pos, 0 });
+}
+
 /**
  * Given a direction, return the direction that points the other way,
  * on the same axis.

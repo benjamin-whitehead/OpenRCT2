@@ -277,7 +277,6 @@ bool MapCheckCapacityAndReorganise(const CoordsXY& loc, size_t numElements)
 }
 
 static void ClearElementsAt(const CoordsXY& loc);
-static ScreenCoordsXY Translate3DTo2D(int32_t rotation, const CoordsXY& pos);
 
 void TileElementIteratorBegin(tile_element_iterator* it)
 {
@@ -1822,11 +1821,6 @@ bool MapLargeScenerySignSetColour(const CoordsXYZD& signPos, int32_t sequence, u
     }
 
     return true;
-}
-
-static ScreenCoordsXY Translate3DTo2D(int32_t rotation, const CoordsXY& pos)
-{
-    return Translate3DTo2DWithZ(rotation, CoordsXYZ{ pos, 0 });
 }
 
 static void MapInvalidateTileUnderZoom(int32_t x, int32_t y, int32_t z0, int32_t z1, ZoomLevel maxZoom)
