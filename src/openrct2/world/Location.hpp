@@ -541,6 +541,13 @@ constexpr Direction ALL_DIRECTIONS[] = {
     3,
 };
 
+inline constexpr ScreenCoordsXY Translate3DTo2DWithZ(int32_t rotation, const CoordsXYZ& pos)
+{
+    auto rotated = pos.Rotate(rotation);
+    // Use right shift to avoid issues like #9301
+    return ScreenCoordsXY{ rotated.y - rotated.x, ((rotated.x + rotated.y) >> 1) - pos.z };
+}
+
 /**
  * Given a direction, return the direction that points the other way,
  * on the same axis.

@@ -51,6 +51,7 @@
 #include "TileElementsView.h"
 #include "TileInspector.h"
 #include "Wall.h"
+#include "Location.hpp"
 
 #include <algorithm>
 #include <iterator>
@@ -1826,13 +1827,6 @@ bool MapLargeScenerySignSetColour(const CoordsXYZD& signPos, int32_t sequence, u
 static ScreenCoordsXY Translate3DTo2D(int32_t rotation, const CoordsXY& pos)
 {
     return Translate3DTo2DWithZ(rotation, CoordsXYZ{ pos, 0 });
-}
-
-ScreenCoordsXY Translate3DTo2DWithZ(int32_t rotation, const CoordsXYZ& pos)
-{
-    auto rotated = pos.Rotate(rotation);
-    // Use right shift to avoid issues like #9301
-    return ScreenCoordsXY{ rotated.y - rotated.x, ((rotated.x + rotated.y) >> 1) - pos.z };
 }
 
 static void MapInvalidateTileUnderZoom(int32_t x, int32_t y, int32_t z0, int32_t z1, ZoomLevel maxZoom)
